@@ -1,0 +1,8 @@
+name: CI Failure Explainer
+description: Explains why CI failed and how to fix it
+inputs:
+  openai_api_key:
+    required: true
+runs:
+  using: node20
+  main: dist/index.js
