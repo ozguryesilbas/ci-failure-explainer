@@ -6,5 +6,3 @@ inputs:
 runs:
   using: node20
   main: dist/index.js
-  env:
-    OPENAI_API_KEY: ${{ inputs.openai_api_key }}
