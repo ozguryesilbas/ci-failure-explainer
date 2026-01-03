@@ -34270,7 +34270,8 @@ async function run() {
         if (!openaiKey)
             throw new Error('OPENAI_API_KEY missing');
         const { owner, repo } = github.context.repo;
-        const runId = github.context.runId;
+        const payload = github.context.payload;
+        const runId = payload.workflow_run?.id ?? github.context.runId;
         const octokit = github.getOctokit(githubToken);
         const logResponse = await octokit.rest.actions.downloadWorkflowRunLogs({
             owner,
