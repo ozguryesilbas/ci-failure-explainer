@@ -2,26 +2,26 @@ CI Failure Explainer 🤖
 
 Automatically explains why your GitHub Actions CI failed and how to fix it, using AI.
 
-No more scrolling through logs. Get root cause, evidence, and exact fix steps in seconds.
-
+No more scrolling through logs.
+Get root cause, evidence, and exact fix steps directly in the Job Summary.
 
 ✨ What it does
 
-Detects failed CI runs
+Detects failed GitHub Actions workflows
 
-Downloads real GitHub Actions logs
+Downloads real workflow logs
 
 Filters noise (git warnings, irrelevant output)
 
+Finds the actual root cause
+
 Explains the failure using AI
 
-Writes a clear report to Job Summary
+Writes a clear explanation to Job Summary
 
-Works with any language or framework
-
+Works with any language or framework running inside GitHub Actions
 
 🧠 Example output
-
 ❌ CI Failure Explained
 
 Root cause:
@@ -36,9 +36,94 @@ Fix steps:
 2. Ensure dependencies are installed in CI
 3. Re-run the pipeline
 
+🧩 What failures can it explain?
+
+CI Failure Explainer analyzes logs produced by GitHub Actions workflows.
+
+Any tool that runs inside GitHub Actions (tests, Sonar, Docker, scripts, etc.)
+is supported.
+
+🧪 Test failures (inside GitHub Actions)
+
+Unit / integration test failures
+
+AssertionError, timeout
+
+Test framework errors (JUnit, Jest, PyTest, etc.)
+
+Example:
+“Test X failed due to a null pointer exception.”
+
+🔍 Sonar / quality gate failures
+
+(when Sonar runs as a GitHub Actions step)
+
+Quality Gate failed
+
+Coverage below threshold
+
+Blocker / critical code issues
+
+Example:
+“Sonar Quality Gate failed because coverage dropped below 80%.”
+
+🐳 Docker & build failures
+
+Docker image build failures
+
+Base image pull errors
+
+Registry authentication errors (401 / 403)
+
+Push failures
+
+Example:
+“Docker image push failed due to missing registry credentials.”
+
+📦 Dependency & package failures
+
+npm / Maven / Gradle / pip dependency not found
+
+Version conflicts
+
+Lockfile mismatches
+
+Example:
+“Build failed because the lodash dependency is missing.”
+
+🔐 Secret & environment failures
+
+Missing environment variables
+
+Undefined secrets
+
+Invalid or expired tokens
+
+Example:
+“DOCKER_PASSWORD secret is not defined.”
+
+🧱 Script & configuration failures
+
+Bash / shell script exit code errors
+
+YAML syntax issues
+
+File or path not found errors
+
+Example:
+“Workflow failed due to invalid indentation in ci.yml.”
+
+❌ Not supported (v1)
+
+Jenkins logs
+
+GitLab CI logs
+
+Bitbucket Pipelines logs
+
+These platforms are not supported in v1.
 
 🚀 How to use
-
 1️⃣ Your CI workflow (.github/workflows/ci.yml)
 name: CI
 
@@ -75,7 +160,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-
 🔑 Requirements
 
 GitHub Actions
@@ -87,28 +171,19 @@ Add your key:
 Settings → Secrets → Actions → New repository secret
 Name: OPENAI_API_KEY
 
+🔐 Costs & privacy
 
-🧩 Why this action?
+Users provide their own OpenAI API key
 
-Works after CI finishes (no hacks)
+The action does not store or log secrets
 
-Uses official GitHub APIs
+API keys are masked by GitHub and never exposed
 
-Real log analysis, not guesses
+📦 Marketplace
 
-Language-agnostic
+👉 https://github.com/marketplace/actions/ci-failure-explainer
 
-Marketplace-ready architecture
-
-
-💰 Pricing (planned)
-
-Free: Public repositories
-
-Pro: Private repositories, advanced analysis
-
-
-🛠️ Built with
+🛠 Built with
 
 GitHub Actions API
 
@@ -117,9 +192,3 @@ OpenAI
 TypeScript
 
 @vercel/ncc
-
-
-📦 Marketplace
-
-👉 https://github.com/marketplace/actions/ci-failure-explainer
-
