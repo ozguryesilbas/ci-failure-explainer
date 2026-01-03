@@ -35,7 +35,8 @@ async function run() {
                 `--- ${e.entryName} ---\n${e.getData().toString('utf8')}`
             )
             .filter((log: string) =>
-                /error|failed|exception|exit code|cannot find/i.test(log)
+                /error|exception|cannot find|module not found|stack trace|failed test/i.test(log) &&
+                !log.includes('hint: Using')
             )
             .join('\n')
             .slice(0, 8000)
@@ -43,7 +44,7 @@ async function run() {
         if (!errorLogs) {
             await core.summary
                 .addHeading('❌ CI Failure Explained')
-                .addRaw('No meaningful failure logs found.')
+                .addRaw('No actionable CI failure logs were detected.')
                 .write()
             return
         }
@@ -55,7 +56,8 @@ async function run() {
             messages: [
                 {
                     role: 'system',
-                    content: 'You are a senior CI/CD engineer. Be concise and practical.'
+                    content:
+                        'You are a CI failure analysis tool. Ignore git warnings and focus only on the actual error that caused the job to fail.'
                 },
                 {
                     role: 'user',
