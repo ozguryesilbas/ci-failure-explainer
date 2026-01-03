@@ -34265,16 +34265,14 @@ async function run() {
     try {
         const githubToken = process.env.GITHUB_TOKEN;
         const openaiKey = process.env.OPENAI_API_KEY;
-        if (!githubToken) {
+        if (!githubToken)
             throw new Error('GITHUB_TOKEN missing');
-        }
-        if (!openaiKey) {
+        if (!openaiKey)
             throw new Error('OPENAI_API_KEY missing');
-        }
         const { owner, repo } = github.context.repo;
         const runId = github.context.runId;
         const octokit = github.getOctokit(githubToken);
-        const logResponse = await octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/logs', {
+        const logResponse = await octokit.rest.actions.downloadWorkflowRunLogs({
             owner,
             repo,
             run_id: runId
@@ -34298,9 +34296,7 @@ async function run() {
                 .write();
             return;
         }
-        const openai = new openai_1.default({
-            apiKey: openaiKey
-        });
+        const openai = new openai_1.default({ apiKey: openaiKey });
         const completion = await openai.chat.completions.create({
             model: 'gpt-4o-mini',
             messages: [
