@@ -4,6 +4,7 @@ Automatically explains why your GitHub Actions CI failed and how to fix it, usin
 
 No more scrolling through logs. Get root cause, evidence, and exact fix steps in seconds.
 
+
 ✨ What it does
 
 Detects failed CI runs
@@ -18,7 +19,9 @@ Writes a clear report to Job Summary
 
 Works with any language or framework
 
+
 🧠 Example output
+
 ❌ CI Failure Explained
 
 Root cause:
@@ -33,7 +36,9 @@ Fix steps:
 2. Ensure dependencies are installed in CI
 3. Re-run the pipeline
 
+
 🚀 How to use
+
 1️⃣ Your CI workflow (.github/workflows/ci.yml)
 name: CI
 
@@ -70,6 +75,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
+
 🔑 Requirements
 
 GitHub Actions
@@ -80,6 +86,7 @@ Add your key:
 
 Settings → Secrets → Actions → New repository secret
 Name: OPENAI_API_KEY
+
 
 🧩 Why this action?
 
@@ -93,11 +100,13 @@ Language-agnostic
 
 Marketplace-ready architecture
 
+
 💰 Pricing (planned)
 
 Free: Public repositories
 
 Pro: Private repositories, advanced analysis
+
 
 🛠️ Built with
 
@@ -109,14 +118,8 @@ TypeScript
 
 @vercel/ncc
 
+
 📦 Marketplace
 
 👉 https://github.com/marketplace/actions/ci-failure-explainer
 
-Next (2 minutes)
-
-git tag v1
-
-git push origin v1
-
-Publish to Marketplace
