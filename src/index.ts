@@ -28,20 +28,18 @@ async function run() {
         const entries = zip.getEntries()
 
         const errorLogs = entries
-            .map((e: AdmZip.IZipEntry) => e.getData().toString('utf8'))
+            .map((e: AdmZip.IZipEntry) =>
+                `--- ${e.entryName} ---\n${e.getData().toString('utf8')}`
+            )
             .filter((log: string) =>
-                log.includes('Error') ||
-                log.includes('ERROR') ||
-                log.includes('Failed') ||
-                log.includes('FAILED') ||
-                log.includes('exit code')
+                /error|failed|exception|exit code|cannot find/i.test(log)
             )
             .join('\n')
             .slice(0, 8000)
 
         if (!errorLogs) {
             await core.summary
-                .addHeading('CI Failure Explained')
+                .addHeading('❌ CI Failure Explained')
                 .addRaw('No meaningful failure logs found.')
                 .write()
             return
@@ -70,7 +68,8 @@ ${errorLogs}`
         })
 
         const explanation =
-            completion.choices[0]?.message?.content ?? 'No explanation generated.'
+            completion.choices[0]?.message?.content ??
+                'No explanation could be generated.'
 
                 await core.summary
                     .addHeading('❌ CI Failure Explained')
