@@ -32,14 +32,14 @@ Script & YAML errors
 
 Jenkins, GitLab CI, and Bitbucket Pipelines are not supported.
 
-```md
-## 🚀 Quick start
+🚀 Quick start
 
 ```yaml
 - uses: ozguryesilbas/ci-failure-explainer@v1
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+```
 
 🔑 Requirements
 
