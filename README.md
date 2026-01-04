@@ -1,11 +1,9 @@
-CI Failure Explainer 🤖
+🤖 CI Failure Explainer
 
 Explains why your GitHub Actions CI failed and how to fix it, using AI.
-
 Get root cause, evidence, and exact fix steps directly in the Job Summary.
 
 ✨ What it does
-
 Analyzes real GitHub Actions logs
 
 Finds the actual root cause
