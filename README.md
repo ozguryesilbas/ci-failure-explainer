@@ -1,9 +1,12 @@
 🤖 CI Failure Explainer
 
 Explains why your GitHub Actions CI failed and how to fix it, using AI.
+
 Get root cause, evidence, and exact fix steps directly in the Job Summary.
 
+
 ✨ What it does
+
 Analyzes real GitHub Actions logs
 
 Finds the actual root cause
@@ -11,6 +14,7 @@ Finds the actual root cause
 Explains failures using AI
 
 Works with any language or framework
+
 
 🧩 What failures are supported?
 
@@ -30,6 +34,7 @@ Script & YAML errors
 
 Jenkins, GitLab CI, and Bitbucket Pipelines are not supported.
 
+
 🚀 Quick start
 
 ```yaml
@@ -39,15 +44,18 @@ Jenkins, GitLab CI, and Bitbucket Pipelines are not supported.
     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 ```
 
+
 🔑 Requirements
 
 GitHub Actions
 
 OpenAI API key
 
+
 📦 Marketplace
 
 👉 https://github.com/marketplace/actions/ci-failure-explainer
+
 
 🔐 Costs & privacy
 
